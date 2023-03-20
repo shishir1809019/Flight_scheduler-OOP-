@@ -30,7 +30,11 @@ class AllAirports:
             try:
                 for line in lines:
                     country = line[3]
+                    if country not in country_currency:
+                        continue
                     currency_name = country_currency[country]
+                    if currency_name not in currency_rates:
+                        continue
                     rate = currency_rates[currency_name]
                     airports[line[4]] = Airport(line[4], line[1], line[2], line[3], line[6], line[7], rate)
             except KeyError as e:
